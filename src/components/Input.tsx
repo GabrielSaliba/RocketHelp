@@ -11,6 +11,12 @@ export function Input({...rest}: IInputProps) {
       fontFamily="body"
       color="white"
       placeholderTextColor="gray.300"
+      selectionColor="green.500"
+      _focus={{
+        borderWidth: 1,
+        borderColor: "green.500",
+        bg: "gray.700"
+      }}
       {...rest}
     />
   );
