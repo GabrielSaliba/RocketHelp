@@ -1,23 +1,20 @@
-import { StatusBar } from "expo-status-bar";
-import React, { useState } from "react";
-import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import { NativeBaseProvider, StatusBar } from "native-base";
+import SignIn from "./src/screens/SignIn";
+import { THEME } from "./src/styles/theme";
+import {
+  useFonts,
+  Roboto_400Regular,
+  Roboto_700Bold,
+} from "@expo-google-fonts/roboto";
+import { Loading } from "./src/components/Loading";
 
 export default function App() {
-  const [userName, setUserName] = useState("Gabriel");
+  const [fontsLoaded] = useFonts({ Roboto_400Regular, Roboto_700Bold });
 
   return (
-    <View style={styles.container}>
-      <Text>Hello {userName}!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <NativeBaseProvider theme={THEME}>
+      <StatusBar barStyle="light-content" backgroundColor="transparent" translucent/>
+      {fontsLoaded ? <SignIn /> : <Loading />}
+    </NativeBaseProvider>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#fff",
-    alignItems: "center",
-    justifyContent: "center",
-  },
-});
